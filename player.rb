@@ -2,7 +2,8 @@ require_relative '.'
 
 class Player
 
-  attr_accessor
+  attr_accessor :mark, :record
+  attr_reader :name
 
   @@players = []
 
