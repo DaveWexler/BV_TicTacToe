@@ -1,4 +1,5 @@
 require_relative 'space'
+require 'pry'
 
 class Board
 
@@ -51,6 +52,30 @@ class Board
 
   def valid_move?(space)
     true if space.value == 0
+  end
+
+  def won_row?
+    value_array = self.board.each_with_object([]) do |row, row_values|
+      row_values << row.map {|space| space.value}
+    end
+    #if the sum of any row_values array equals n or -n, return true
+    sums = value_array.map do |nums_array|
+      nums_array.inject(0, :+)
+    end
+    sums.any? {|sum| sum == self.n || sum == -(self.n)}
+  end
+
+  def won_column?
+    column_idxs = (0..self.n-1).to_a
+    value_array = column_idxs.map do |column_idx|
+      vals = self.board.map do |row|
+        row[column_idx].value
+      end
+    end
+    sums = value_array.map do |nums_array|
+      nums_array.inject(0, :+)
+    end
+    sums.any? {|sum| sum == self.n || sum == -(self.n)}
   end
 
 end

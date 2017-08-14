@@ -69,28 +69,4 @@ class Game
 		end
 	end
 
-  def won_row?
-    value_array = self.board.board.each_with_object([]) do |row, row_values|
-      row_values << row.map {|space| space.value}
-    end
-    #if the sum of any row_values array equals n or -n, return true
-    sums = value_array.map do |nums_array|
-      nums_array.inject(0, :+)
-    end
-    sums.any? {|sum| sum == (self.board.n || -(self.board.n))}
-  end
-
-  def won_column?
-    column_idxs = [0..self.board.n-1]
-    value_array = column_idxs.each_with_object([]) do |column_idx, column_spaces|
-      column_spaces << self.board.board.map do |row|
-        row[column_idx]
-      end
-    end
-    sums = value_array.map do |nums_array|
-      nums_array.inject(0, :+)
-    end
-    sums.any? {|sum| sum == self.board.n || sum == -(self.board.n)}
-  end
-
 end

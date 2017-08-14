@@ -8,7 +8,6 @@ class Space
   end
 
   def mark_x
-    binding.pry
     self.mark = "X"
     self.value = 1
   end
