@@ -1,6 +1,7 @@
 require_relative 'game'
 require_relative 'space'
 require_relative 'board'
+require_relative 'wincrement'
 
 def playagain?
   puts "The game is over! Do you want to play again? (Y/N)"
@@ -16,12 +17,13 @@ end
 
 def play
   tictactoe = Game.new
-  until tictactoe.won_row? || tictactoe.won_column?
+  until tictactoe.board.won? || tictactoe.board.full?
     tictactoe.turn(tictactoe.current_move)
     tictactoe.board.display_board
-    tictactoe.won_row?
-    tictactoe.won_column?
+    tictactoe.board.won?
+    tictactoe.board.full?
   end
+  Wincrement.new(tictactoe).run
 
   # until tictactoe.board.winning(tictactoe.board.board_spots) == true || tictactoe.board.full?(tictactoe.board.board_spots) == true
   #   tictactoe.turn(tictactoe.current_move)

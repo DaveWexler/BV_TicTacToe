@@ -9,7 +9,7 @@ class Player
     @name = name
     @record = [0,0,0]
     @mark = nil
-    Player.players << self
+    @@players << self
   end
 
   def self.players
@@ -19,15 +19,17 @@ class Player
   def self.find_or_create_player(name)
 		person = Player.players.find {|player| player.name == name}
 		if person == nil then person = Player.new(name)
-		else puts "Welcome back, #{person.name}! Your record is #{person.record[0]} wins, #{person.record[1]} losses, and #{person.record[2]} draw(s)."
+		else
+      puts "Welcome back, #{person.name}! Your record is #{person.record[0]} wins, #{person.record[1]} losses, and #{person.record[2]} draw(s)."
+      person
 		end
 	end
 
   def create_move
     puts "Pick the row number that contains the space you wish to choose."
-    row_number = gets.chomp
+    row_number = gets.chomp.to_i
     puts "Pick the column number within that row of the space you wish to choose."
-    column_number = gets.chomp
-    [self.mark, Game.board[row_number-1][column_number-1]]
+    column_number = gets.chomp.to_i
+    [row_number-1, column_number-1]
   end
 end

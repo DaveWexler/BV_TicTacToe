@@ -78,4 +78,12 @@ class Board
     sums.any? {|sum| sum == self.n || sum == -(self.n)}
   end
 
+  def full?
+    true if self.all_spaces.none? {|space| space.value == 0}
+  end
+
+  def won?
+    self.won_row? || self.won_column?
+  end
+
 end
