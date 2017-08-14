@@ -1,5 +1,3 @@
-require_relative '.'
-
 class Space
 
   attr_accessor :mark, :value
@@ -10,6 +8,7 @@ class Space
   end
 
   def mark_x
+    binding.pry
     self.mark = "X"
     self.value = 1
   end

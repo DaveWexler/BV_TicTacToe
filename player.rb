@@ -1,5 +1,3 @@
-require_relative '.'
-
 class Player
 
   attr_accessor :mark, :record
@@ -13,6 +11,10 @@ class Player
     @mark = nil
     Player.players << self
   end
+
+  def self.players
+		@@players
+	end
 
   def self.find_or_create_player(name)
 		person = Player.players.find {|player| player.name == name}

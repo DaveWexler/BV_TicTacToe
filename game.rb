@@ -1,15 +1,18 @@
-require_relative '.'
+require_relative 'board'
+require_relative 'player'
+require_relative 'computer'
+require 'pry'
 
 class Game
 
-  attr_accessor
+  attr_accessor :board, :current_player, :player1, :computer_player
 
   def initialize
-    @board = Board.new
-		@computermark = "O"
+    @board = nil
 		@current_player = nil
     self.welcome
     self.mark_select
+    self.build_board
   end
 
   def welcome
@@ -32,6 +35,12 @@ class Game
 		else
 			self.mark_select
 		end
+  end
+
+  def build_board
+    puts "How many rows/colums would you like to have (A normal game of tic tac toe is 3)?"
+    n = gets.chomp.to_i
+    self.board = Board.new(n)
   end
 
   def switch_player
@@ -59,5 +68,29 @@ class Game
 			self.turn(self.current_move)
 		end
 	end
+
+  def won_row?
+    value_array = self.board.board.each_with_object([]) do |row, row_values|
+      row_values << row.map {|space| space.value}
+    end
+    #if the sum of any row_values array equals n or -n, return true
+    sums = value_array.map do |nums_array|
+      nums_array.inject(0, :+)
+    end
+    sums.any? {|sum| sum == (self.board.n || -(self.board.n))}
+  end
+
+  def won_column?
+    column_idxs = [0..self.board.n-1]
+    value_array = column_idxs.each_with_object([]) do |column_idx, column_spaces|
+      column_spaces << self.board.board.map do |row|
+        row[column_idx]
+      end
+    end
+    sums = value_array.map do |nums_array|
+      nums_array.inject(0, :+)
+    end
+    sums.any? {|sum| sum == self.board.n || sum == -(self.board.n)}
+  end
 
 end

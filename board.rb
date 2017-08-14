@@ -1,4 +1,4 @@
-require_relative '.'
+require_relative 'space'
 
 class Board
 
@@ -11,7 +11,7 @@ class Board
   end
 
   def new_row
-    row = Array.new(self.n, Space.new)
+    row = Array.new(self.n) {Space.new}
   end
 
   def new_board
@@ -52,5 +52,5 @@ class Board
   def valid_move?(space)
     true if space.value == 0
   end
-  
+
 end

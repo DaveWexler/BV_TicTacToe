@@ -1,21 +1,19 @@
-require_relative '.'
-
 class Computer
 
   attr_accessor :computermark
 
   def initialize
-    @computermark = nil
+    @computer_mark = nil
   end
 
   def create_move
     possible_moves = []
-    Game.board.all_spaces.each_with_index do |space, idx|
+    Game.board.all_spaces.each do |space|
       if space.value == 0  #or board.valid_move?(idx)
-        possible_moves << idx
+        possible_moves << space
       end
     end
-    move = [self.computermark, Game.board.all_spaces[possible_moves.sample]]
+    move = [self.computer_mark, possible_moves.sample]
   end
 
 end
