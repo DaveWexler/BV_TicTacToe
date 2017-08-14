@@ -21,4 +21,11 @@ class Player
 		end
 	end
 
+  def create_move
+    puts "Pick the row number that contains the space you wish to choose."
+    row_number = gets.chomp
+    puts "Pick the column number within that row of the space you wish to choose."
+    column_number = gets.chomp
+    [self.mark, Game.board[row_number-1][column_number-1]]
+  end
 end
