@@ -1,5 +1,4 @@
 require_relative '../board.rb'
-require 'pry'
 
 describe "Board" do
 

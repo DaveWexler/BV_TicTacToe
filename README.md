@@ -2,6 +2,10 @@
 
 Hello! This repo contains my code for an object oriented Tic-Tac-Toe game runable from the command line. There is no web-based interface, only command line input and output.
 
+### To run the game
+
+Simply run "ruby runner.rb" from the command line in the directory containing the files and the spec folder.
+
 ### My logic for determining a win
 
 My goal from the start was to make an algorithm that would work for a board shape of any size. I ended up with the following idea for a board of size n (n rows and n columns):

@@ -1,5 +1,4 @@
 require_relative 'space'
-require 'pry'
 
 class Board
 
