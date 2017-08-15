@@ -9,7 +9,7 @@ def playagain?
   if input == "Y" || input == "y"
     play
   elsif input == "N" || input == "n"
-    puts "How about a nice game of Global Thermonuclear War?"
+    puts "How about a nice game of Chess?"
   else
     playagain?
   end

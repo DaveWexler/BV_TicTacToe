@@ -7,14 +7,17 @@ class Wincrement
 	end
 
 	def run
-	  if game.board.won? == true
-	    if game.winner == :human
-	      game.player1.record[0] += 1
-	    else game.winner == :computer
-	      game.player1.record[1] += 1
+	  if self.game.board.won? == true
+	    if self.game.winner == :human
+	      self.game.player1.record[0] += 1
+        puts "Conratulations, you won!"
+	    elsif self.game.winner == :computer
+	      self.game.player1.record[1] += 1
+        puts "Sorry, you lost. Try again!"
 	    end
 	  else
-	    game.player1.record[2] += 1
+	    self.game.player1.record[2] += 1
+      puts "The game ended in a draw."
 	  end
 	end
 
