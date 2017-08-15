@@ -78,12 +78,30 @@ class Board
     sums.any? {|sum| sum == self.n || sum == -(self.n)}
   end
 
+  def won_left_diagonal?
+    nums = (0..self.n-1).to_a
+    values = nums.map do |num|
+      self.board[num][num].value
+    end
+    sum = values.inject(0, :+).to_i
+    return true if sum == self.n || sum == -(self.n)
+  end
+
+  def won_right_diagonal?
+    nums = (0..self.n-1).to_a.reverse
+    values = nums.each_with_index.map do |num, idx|
+      self.board[idx][num].value
+    end
+    sum = values.inject(0, :+).to_i
+    return true if sum == self.n || sum == -(self.n)
+  end
+
   def full?
     true if self.all_spaces.none? {|space| space.value == 0}
   end
 
   def won?
-    self.won_row? || self.won_column?
+    self.won_row? || self.won_column? || self.won_left_diagonal? || self.won_right_diagonal?
   end
 
 end
